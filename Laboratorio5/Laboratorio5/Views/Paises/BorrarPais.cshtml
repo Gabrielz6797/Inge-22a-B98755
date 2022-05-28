@@ -1,0 +1,20 @@
+﻿@model Laboratorio5.Models.PaisModel
+<html>
+<head>
+</head>
+<body>
+    @using (Html.BeginForm("BorrarPais", "paises", FormMethod.Post, new
+    {
+        enctype =
+    "multipart/form-data"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <h1>Eliminación de país</h1>
+        @Html.HiddenFor(model=>model.Id)
+        <div class="form-horizontal">
+            <input type="submit" class="btn btn-success" value="Eliminar" />
+        </div>
+    }
+</body>
+</html>

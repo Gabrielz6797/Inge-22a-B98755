@@ -83,5 +83,18 @@ namespace Laboratorio5.Handlers
 
             return exito;
         }
+
+        public bool BorrarPais(PaisModel pais)
+        {
+            var consulta = @"Delete [dbo].[pais] where Id = @id";
+            var comandoParaConsulta = new SqlCommand(consulta, conexion);
+            comandoParaConsulta.Parameters.AddWithValue("@id", pais.Id);
+
+            conexion.Open();
+            bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1;
+            conexion.Close();
+
+            return exito;
+        }
     }
 }
