@@ -18,6 +18,7 @@
     {
         @Html.AntiForgeryToken()
         <h1>Formulario de edición de países</h1>
+        @Html.HiddenFor(model=>model.Id)
         <div class="form-horizontal">
             <div class="form-group">
                 @Html.LabelFor(model => model.Nombre)
