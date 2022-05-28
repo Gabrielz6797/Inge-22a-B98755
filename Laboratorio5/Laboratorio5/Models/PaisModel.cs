@@ -17,7 +17,7 @@ namespace Laboratorio5.Models
 
         [Required(ErrorMessage = "Debe ingresar un idioma")]
         [DisplayName("Idioma:")]
-        [RegularExpression("⌃[a-zA-Z]+$", ErrorMessage = "No puede ingresar números")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "No puede ingresar números")]
         public string Idioma { get; set; }
     }
 }
