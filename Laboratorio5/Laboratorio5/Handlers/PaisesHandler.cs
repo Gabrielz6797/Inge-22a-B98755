@@ -21,9 +21,11 @@ namespace Laboratorio5.Handlers
             SqlDataAdapter adaptadorParaTabla = new
             SqlDataAdapter(comandoParaConsulta);
             DataTable consultaFormatoTabla = new DataTable();
+            
             conexion.Open();
             adaptadorParaTabla.Fill(consultaFormatoTabla);
             conexion.Close();
+
             return consultaFormatoTabla;
         }
 
@@ -43,6 +45,7 @@ namespace Laboratorio5.Handlers
                     Continente = Convert.ToString(columna["Continente"]),
                 });
             }
+
             return paises;
         }
 
@@ -54,9 +57,30 @@ namespace Laboratorio5.Handlers
             comandoParaConsulta.Parameters.AddWithValue("@Nombre", pais.Nombre);
             comandoParaConsulta.Parameters.AddWithValue("@Idioma", pais.Idioma);
             comandoParaConsulta.Parameters.AddWithValue("@Continente", pais.Continente);
+            
             conexion.Open();
             bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1;
             conexion.Close();
+
+            return exito;
+        }
+
+        public bool EditarPais(PaisModel pais)
+        {
+            var consulta = @"UPDATE [dbo].[Pais] SET Nombre = @Nombre,
+                                Idioma = @Idioma,
+                                Continente = @Continente
+                                WHERE Id = @Id";
+            var comandoParaConsulta = new SqlCommand(consulta, conexion);
+            comandoParaConsulta.Parameters.AddWithValue("@Nombre", pais.Nombre);
+            comandoParaConsulta.Parameters.AddWithValue("@Idioma", pais.Idioma);
+            comandoParaConsulta.Parameters.AddWithValue("@Continente", pais.Continente);
+            comandoParaConsulta.Parameters.AddWithValue("@Id", pais.Id);
+
+            conexion.Open();
+            bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1;
+            conexion.Close();
+
             return exito;
         }
     }
