@@ -1,0 +1,322 @@
+{
+  "id": "da7d4569-52f7-40dc-adaa-3ab5983342b7",
+  "version": "2.0",
+  "name": "UITestLaboratorio8",
+  "url": "https://localhost:7186",
+  "tests": [{
+    "id": "6af27b37-74db-45f5-9150-7af35b37264b",
+    "name": "PruebaUno",
+    "commands": [{
+      "id": "0ea586f7-3d25-48b6-a8a5-c8f7e0e9ebdc",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4c1b9032-9f7f-4fc1-9afe-cc55273171e9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "468d0899-b712-4159-8a3d-3064a76405f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.display-4",
+      "targets": [
+        ["css=.display-4", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Welcome')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5028b8ee-2064-414d-8269-25ba5a6f74f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.display-4",
+      "targets": [
+        ["css=.display-4", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Welcome')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4795b396-0198-45ba-81cd-4314276cc667",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.display-4",
+      "targets": [
+        ["css=.display-4", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Welcome')]", "xpath:innerText"]
+      ],
+      "value": "Welcome"
+    }, {
+      "id": "0a382bbb-698f-4b96-99dc-88f086effa4e",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=building Web apps with ASP.NET Core",
+      "targets": [
+        ["linkText=building Web apps with ASP.NET Core", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'building Web apps with ASP.NET Core')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'https://docs.microsoft.com/aspnet/core')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'building Web apps with ASP.NET Core')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1f6ac5f-433c-4e81-aabc-4b37bb02be78",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.container > a",
+      "targets": [
+        ["css=.container > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Privacy')])[2]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/Home/Privacy')])[2]", "xpath:href"],
+        ["xpath=//footer/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ffd3ad7-4d30-4360-b9bf-0fbddf7c6fe8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Países",
+      "targets": [
+        ["linkText=Países", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Países')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Paises')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Países')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "77e182ee-1b3a-4022-abac-14c709f6428b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Lista de países')]", "xpath:innerText"]
+      ],
+      "value": "Lista de países"
+    }]
+  }, {
+    "id": "9695326c-e27a-4159-b392-e884790cf732",
+    "name": "PruebaDos",
+    "commands": [{
+      "id": "6b811dd7-b81a-4c66-8194-1e0fe73a1e25",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "652c6a38-6100-4adb-9235-25dd5c5ccf6a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3792a9f6-3d35-486b-847d-06d25ca41f77",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Países",
+      "targets": [
+        ["linkText=Países", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Países')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Paises')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Países')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0e7fa85-096e-4974-a408-47c66a2c52a4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Países",
+      "targets": [
+        ["linkText=Países", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Países')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Paises')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Países')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "489c7060-a113-48dd-b281-c5d977529e7f",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Países - Laboratorio5",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "10f5640e-c135-4625-98d7-41c15cd87d9b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Crear país",
+      "targets": [
+        ["linkText=Crear país", "linkText"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//a[contains(text(),'Crear país')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Paises/CrearPais')]", "xpath:href"],
+        ["xpath=//main/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Crear país')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ce13d6a-84c4-4d1b-9a6d-84b7ee1bbced",
+      "comment": "",
+      "command": "click",
+      "target": "id=Nombre",
+      "targets": [
+        ["id=Nombre", "id"],
+        ["name=Nombre", "name"],
+        ["css=#Nombre", "css:finder"],
+        ["xpath=//input[@id='Nombre']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f149248f-3f3e-47e7-a308-1dd93d533940",
+      "comment": "",
+      "command": "type",
+      "target": "id=Nombre",
+      "targets": [
+        ["id=Nombre", "id"],
+        ["name=Nombre", "name"],
+        ["css=#Nombre", "css:finder"],
+        ["xpath=//input[@id='Nombre']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Prueba Selenium"
+    }, {
+      "id": "b2097c92-0f5e-4bb1-96af-717fe5ef3018",
+      "comment": "",
+      "command": "click",
+      "target": "id=Continente",
+      "targets": [
+        ["id=Continente", "id"],
+        ["name=Continente", "name"],
+        ["css=#Continente", "css:finder"],
+        ["xpath=//select[@id='Continente']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"],
+        ["xpath=//select[contains(.,'-Sinselección-\nAmérica\nAsia\nEuropa\nOceanía\nAntártida\nÁfrica')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ff19eb7-d9f1-4972-ab62-7cdfcf869889",
+      "comment": "",
+      "command": "select",
+      "target": "id=Continente",
+      "targets": [],
+      "value": "label=Antártida"
+    }, {
+      "id": "3cc5f171-16fe-4e60-9a76-4289ca760d7a",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=Continente",
+      "targets": [
+        ["id=Continente", "id"],
+        ["name=Continente", "name"],
+        ["css=#Continente", "css:finder"],
+        ["xpath=//select[@id='Continente']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"],
+        ["xpath=//select[contains(.,'-Sinselección-\nAmérica\nAsia\nEuropa\nOceanía\nAntártida\nÁfrica')]", "xpath:innerText"]
+      ],
+      "value": "Antártida"
+    }, {
+      "id": "b37cbcff-75a1-459f-a250-ca9a2144dd96",
+      "comment": "",
+      "command": "click",
+      "target": "id=Idioma",
+      "targets": [
+        ["id=Idioma", "id"],
+        ["name=Idioma", "name"],
+        ["css=#Idioma", "css:finder"],
+        ["xpath=//input[@id='Idioma']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47c0c520-5a41-4468-9ce5-8d33a6a860d3",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=Idioma",
+      "targets": [
+        ["id=Idioma", "id"],
+        ["name=Idioma", "name"],
+        ["css=#Idioma", "css:finder"],
+        ["xpath=//input[@id='Idioma']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe6f949d-3195-422e-8ce1-f4f71c8269ba",
+      "comment": "",
+      "command": "type",
+      "target": "id=Idioma",
+      "targets": [
+        ["id=Idioma", "id"],
+        ["name=Idioma", "name"],
+        ["css=#Idioma", "css:finder"],
+        ["xpath=//input[@id='Idioma']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Selenium"
+    }, {
+      "id": "5f9a2d2b-f855-438b-b680-0a87fed3c2e0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Crear']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "430e6522-045c-44b3-8fc5-f0b5960af46b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Países",
+      "targets": [
+        ["linkText=Países", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Países')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Paises')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Países')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff432f07-64b1-4254-9cbe-d671d77d7334",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(6) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(6) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[6]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Prueba Selenium')]", "xpath:innerText"]
+      ],
+      "value": "Prueba Selenium"
+    }]
+  }],
+  "suites": [{
+    "id": "9d12d46e-6e1e-4646-b34d-b5f2acf58892",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6af27b37-74db-45f5-9150-7af35b37264b"]
+  }],
+  "urls": ["https://localhost:7186/"],
+  "plugins": []
+}
