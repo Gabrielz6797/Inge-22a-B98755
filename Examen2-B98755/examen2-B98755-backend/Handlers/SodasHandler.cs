@@ -58,24 +58,12 @@ namespace examen2_B98755_backend.Handlers
       return sodas;
     }
 
-    public static List<SodaModel> GetSodasData1()
+    public static void UpdateSodasQuantity(List<int> boughtSodas)
     {
-      List<SodaModel> sodas = new List<SodaModel>();
-
-      sodasQuantities[0] = sodasQuantities[0] + 1;
-
-      for (int i = 0; i < sodasNames.Count; i++)
+      for (int i = 0; i < sodasQuantities.Count; i++)
       {
-        sodas.Add(new SodaModel
-        {
-          name = sodasNames[i],
-          price = sodasPrices[i].ToString(),
-          quantity = sodasQuantities[i].ToString(),
-          imageURL = sodasImageURLs[i]
-        });
+        sodasQuantities[i] 
       }
-
-      return sodas;
     }
   }
 }

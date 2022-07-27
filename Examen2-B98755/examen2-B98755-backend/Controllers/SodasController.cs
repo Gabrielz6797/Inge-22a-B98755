@@ -24,14 +24,14 @@ namespace examen2_B98755_backend.Controllers
       }
     }
 
-    [HttpGet]
-    [Route("getSodas1")]
-    public ActionResult GetSodas1()
+    [HttpPost]
+    [Route("updateSodas")]
+    public ActionResult UpdateSodas(List<int> boughtSodas)
     {
       try
       {
-        var data = SodasHandler.GetSodasData1();
-        return Ok(data);
+        SodasHandler.UpdateSodasQuantity(boughtSodas);
+        return Ok();
       }
       catch (Exception error)
       {
