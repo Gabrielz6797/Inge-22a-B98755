@@ -30,7 +30,7 @@ const Products = () => (
               <Grid
                 item
                 key={product.id}
-                lg={4}
+                lg={3}
                 md={6}
                 xs={12}
               >
