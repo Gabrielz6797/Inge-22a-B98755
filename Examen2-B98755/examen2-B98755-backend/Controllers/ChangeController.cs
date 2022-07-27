@@ -24,21 +24,5 @@ namespace examen2_B98755_backend.Controllers
         return BadRequest(error.Message);
       }
     }
-
-    [HttpPost]
-    [Route("updateCoins")]
-    public ActionResult UpdateSodas(UsedCoinsModel usedCoins)
-    {
-      try
-      {
-        ChangeLogic.UpdateSodasQuantity(usedCoins);
-        return Ok();
-      }
-      catch (Exception error)
-      {
-        Console.WriteLine(error);
-        return BadRequest(error.Message);
-      }
-    }
   }
 }

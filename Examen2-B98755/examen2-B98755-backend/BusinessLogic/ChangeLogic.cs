@@ -5,12 +5,13 @@ namespace examen2_B98755_backend.BusinessLogic
 {
   public class ChangeLogic
   {
-    public static void UpdateSodasQuantity(UsedCoinsModel usedCoins)
+    public static void UpdateCoinsQuantity(BoughtSodasModel boughtSodas)
     {
-      SodasHandler.sodasQuantities[0] = SodasHandler.sodasQuantities[0] - Int32.Parse(usedCoins.fiveHundred);
-      SodasHandler.sodasQuantities[1] = SodasHandler.sodasQuantities[1] - Int32.Parse(usedCoins.oneHundred);
-      SodasHandler.sodasQuantities[2] = SodasHandler.sodasQuantities[2] - Int32.Parse(usedCoins.fifty);
-      SodasHandler.sodasQuantities[3] = SodasHandler.sodasQuantities[3] - Int32.Parse(usedCoins.twentyFive);
+      //[1] = 500, [2] = 100, [3] = 50, [4] = 25
+      //SodasHandler.sodasQuantities[1] = SodasHandler.sodasQuantities[1] - usedCoins[1];
+      //SodasHandler.sodasQuantities[2] = SodasHandler.sodasQuantities[2] - usedCoins[2];
+      //SodasHandler.sodasQuantities[3] = SodasHandler.sodasQuantities[3] - usedCoins[3];
+      //SodasHandler.sodasQuantities[4] = SodasHandler.sodasQuantities[4] - usedCoins[4];
     }
   }
 }
