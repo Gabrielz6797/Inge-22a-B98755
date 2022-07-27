@@ -26,13 +26,14 @@ namespace examen2_B98755_backend.Controllers
     }
 
     [HttpPost]
-    [Route("updateSodas")]
-    public ActionResult UpdateSodas(BoughtSodasModel boughtSodas)
+    [Route("buySodasAndGetChange")]
+    public ActionResult BuySodasAndGetChange(int change, BoughtSodasModel boughtSodas)
     {
       try
       {
         SodasLogic.UpdateSodasQuantity(boughtSodas);
-        return Ok();
+        var data = ChangeLogic.GetUsedCoins(change);
+        return Ok(data);
       }
       catch (Exception error)
       {
