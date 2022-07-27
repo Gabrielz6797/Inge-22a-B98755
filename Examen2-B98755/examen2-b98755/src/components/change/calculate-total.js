@@ -20,7 +20,7 @@ export const CalculateTotal = ({ ...rest }) => {
         Calcular total a pagar
       </Button>
       &nbsp;
-      <TextField id="outlined-basic" label="Total" variant="outlined" value={total} disabled />
+      <TextField id="outlined-basic" label="Total" variant="outlined" value={"₡" + total} disabled />
     </>
   );
 }

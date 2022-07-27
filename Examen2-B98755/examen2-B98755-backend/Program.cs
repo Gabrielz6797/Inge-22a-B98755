@@ -25,5 +25,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 SodasHandler.InitializeVariables();
+ChangeHandler.InitializeVariables();
 
 app.Run();

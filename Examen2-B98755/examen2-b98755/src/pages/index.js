@@ -1,34 +1,48 @@
 import React from 'react';
 import Head from 'next/head';
 import axios from 'axios';
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { SodaListToolbar } from '../components/soda/soda-list-toolbar';
-import { SodaCard } from '../components/soda/soda-card';
-import { CalculateTotal } from '../components/change/calculate-total';
+import { Box, Button, Container } from '@mui/material';
+import { TitleBar } from '../components/title-bar';
 import { Layout } from '../components/layout';
+import { SodasLayout } from '../components/soda/sodas-layout';
+import { ChangeLayout } from '../components/change/change-layout';
 import { URL } from 'src/utils/url';
 
 class VendingMachine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
-      sodas: []
+      isLoadedSodas: false,
+      isLoadedCoins: false,
+      sodas: [],
+      coins: []
     };
   }
 
   componentDidMount() {
     axios.get(URL + 'getSodas').then(response => {
-      this.setState({ isLoaded: true, sodas: response.data });
-      sessionStorage.setItem("Coca-ColaQuantity", '0');
-      sessionStorage.setItem("PepsiQuantity", '0');
-      sessionStorage.setItem("FantaQuantity", '0');
-      sessionStorage.setItem("SpriteQuantity", '0');
-      sessionStorage.setItem("Coca-ColaTotal", '0');
-      sessionStorage.setItem("PepsiTotal", '0');
-      sessionStorage.setItem("FantaTotal", '0');
-      sessionStorage.setItem("SpriteTotal", '0');
+      this.setState({ isLoadedSodas: true, sodas: response.data });
     });
+    axios.get(URL + 'getCoins').then(response => {
+      this.setState({ isLoadedCoins: true, coins: response.data });
+    });
+    sessionStorage.setItem("Coca-ColaQuantity", '0');
+    sessionStorage.setItem("PepsiQuantity", '0');
+    sessionStorage.setItem("FantaQuantity", '0');
+    sessionStorage.setItem("SpriteQuantity", '0');
+    sessionStorage.setItem("Coca-ColaTotal", '0');
+    sessionStorage.setItem("PepsiTotal", '0');
+    sessionStorage.setItem("FantaTotal", '0');
+    sessionStorage.setItem("SpriteTotal", '0');
+
+    sessionStorage.setItem("500Quantity", '0');
+    sessionStorage.setItem("100Quantity", '0');
+    sessionStorage.setItem("50Quantity", '0');
+    sessionStorage.setItem("25Quantity", '0');
+    sessionStorage.setItem("500Total", '0');
+    sessionStorage.setItem("100Total", '0');
+    sessionStorage.setItem("50Total", '0');
+    sessionStorage.setItem("25Total", '0');
   }
 
   render() {
@@ -58,7 +72,7 @@ class VendingMachine extends React.Component {
       }
     };
 
-    if (!this.state.isLoaded) {
+    if (!(this.state.isLoadedSodas && this.state.isLoadedCoins)) {
       return <div></div>;
     } else {
       return (
@@ -76,34 +90,11 @@ class VendingMachine extends React.Component {
             }}
           >
             <Container maxWidth={false}>
-              <SodaListToolbar />
-              <Box sx={{ pt: 3 }}>
-                <Grid
-                  container
-                  spacing={3}
-                >
-                  {this.state.sodas.map((soda) => (
-                    <Grid
-                      item
-                      key={soda.name}
-                      lg={3}
-                      md={6}
-                      xs={12}
-                    >
-                      <SodaCard soda={soda} />
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  pt: 3
-                }}
-              >
-                <CalculateTotal />
-              </Box>
+              <TitleBar title={"Máquina de refrescos"} />
+              <SodasLayout sodas={this.state.sodas} />
+              <TitleBar title={"Pago"} />
+              <ChangeLayout coins={this.state.coins} />
+
               <Box
                 sx={{
                   display: 'flex',
