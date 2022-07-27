@@ -1,116 +1,112 @@
+import React from 'react';
 import Head from 'next/head';
-import { Box, Container, Grid } from '@mui/material';
-import { Budget } from '../components/dashboard/budget';
-import { LatestOrders } from '../components/dashboard/latest-orders';
-import { LatestProducts } from '../components/dashboard/latest-products';
-import { Sales } from '../components/dashboard/sales';
-import { TasksProgress } from '../components/dashboard/tasks-progress';
-import { TotalCustomers } from '../components/dashboard/total-customers';
-import { TotalProfit } from '../components/dashboard/total-profit';
-import { TrafficByDevice } from '../components/dashboard/traffic-by-device';
-import { DashboardLayout } from '../components/dashboard-layout';
+import axios from 'axios';
+import { Box, Button, Container, Grid } from '@mui/material';
+import { SodaListToolbar } from '../components/soda/soda-list-toolbar';
+import { SodaCard } from '../components/soda/soda-card';
+import { Layout } from '../components/layout';
+import { URL } from 'src/utils/url';
 
-const Dashboard = () => (
-  <>
-    <Head>
-      <title>
-        Dashboard | Material Kit
-      </title>
-    </Head>
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 8
-      }}
-    >
-      <Container maxWidth={false}>
-        <Grid
-          container
-          spacing={3}
+class VendingMachine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sodas: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get(URL + 'getSodas').then(response => {
+      this.setState({ sodas: response.data });
+      sessionStorage.setItem("Coca-Cola", '0');
+      sessionStorage.setItem("Pepsi", '0');
+      sessionStorage.setItem("Fanta", '0');
+      sessionStorage.setItem("Sprite", '0');
+    });
+  }
+
+  render() {
+    function Buy() {
+      var data = {
+        CocaCola: sessionStorage.getItem("Coca-Cola"),
+        Pepsi: sessionStorage.getItem("Pepsi"),
+        Fanta: sessionStorage.getItem("Fanta"),
+        Sprite: sessionStorage.getItem("Sprite")
+      };
+
+      axios.post(URL + 'updateSodas', data).then(response => {
+        alert("Compra realizada con éxito");
+        window.location.reload();
+      }).catch(function (error) {
+        if (error.response) {
+          console.log(error.response)
+          // The client was given an error response (5xx, 4xx)
+          alert("Error: No se pudo realizar la compra");
+        } else {
+          alert("Error: No se puede conectar al servidor");
+        }
+      });
+    };
+
+    return (
+      <>
+        <Head>
+          <title>
+            Máquina de refrescos | Examen 2 - B98755
+          </title>
+        </Head>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            py: 8
+          }}
         >
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <Budget />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalCustomers />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TasksProgress />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalProfit sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <LatestProducts sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  </>
-);
+          <Container maxWidth={false}>
+            <SodaListToolbar />
+            <Box sx={{ pt: 3 }}>
+              <Grid
+                container
+                spacing={3}
+              >
+                {this.state.sodas.map((soda) => (
+                  <Grid
+                    item
+                    key={soda.name}
+                    lg={3}
+                    md={6}
+                    xs={12}
+                  >
+                    <SodaCard soda={soda} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                pt: 3
+              }}
+            >
+            </Box>
+            <Button
+              variant="outlined"
+              onClick={Buy}
+            >
+              Comprar
+            </Button>
+          </Container>
+        </Box>
+      </>
+    );
+  }
+}
 
-Dashboard.getLayout = (page) => (
-  <DashboardLayout>
+VendingMachine.getLayout = (page) => (
+  <Layout>
     {page}
-  </DashboardLayout>
+  </Layout>
 );
 
-export default Dashboard;
+export default VendingMachine;

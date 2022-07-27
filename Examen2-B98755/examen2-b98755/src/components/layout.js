@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const DashboardLayoutRoot = styled('div')(({ theme }) => ({
+const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   maxWidth: '100%',
@@ -11,12 +11,12 @@ const DashboardLayoutRoot = styled('div')(({ theme }) => ({
   }
 }));
 
-export const DashboardLayout = (props) => {
+export const Layout = (props) => {
   const { children } = props;
 
   return (
     <>
-      <DashboardLayoutRoot>
+      <LayoutRoot>
         <Box
           sx={{
             display: 'flex',
@@ -27,7 +27,7 @@ export const DashboardLayout = (props) => {
         >
           {children}
         </Box>
-      </DashboardLayoutRoot>
+      </LayoutRoot>
     </>
   );
 };
