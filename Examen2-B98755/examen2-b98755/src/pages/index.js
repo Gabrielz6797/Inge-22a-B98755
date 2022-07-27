@@ -71,18 +71,33 @@ class VendingMachine extends React.Component {
         if (payment >= totalCost) {
           let change = payment - totalCost;
           axios.post(URL + 'buySodasAndGetChange?change=' + change, data).then(response => {
-            alert("Compra realizada con éxito, su vuelto es de "
-              + (response.data.fiveHundred * 500
-                + response.data.oneHundred * 100
-                + response.data.fifty * 50
-                + response.data.twentyFive * 25)
-              + " colones" + "\n" + "Desglose:" + "\n" + "\t"
-              + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t "
-              + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t "
-              + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t "
-              + response.data.twentyFive + " moneda/s de " + 25
-            );
-            window.location.reload();
+            if (response.data.fiveHundred != 0 || response.data.oneHundred != 0
+              || response.data.fifty != 0 || response.data.twentyFive != 0) {
+              let desglose = "Desglose:" + "\n" + "\t";
+              if (response.data.fiveHundred != 0) {
+                desglose = desglose + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t ";
+              }
+              if (response.data.oneHundred != 0) {
+                desglose = desglose + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t ";
+              }
+              if (response.data.fifty != 0) {
+                desglose = desglose + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t ";
+              }
+              if (response.data.twentyFive != 0) {
+                desglose = desglose + response.data.twentyFive + " moneda/s de " + 25 + + "\n" + "\t ";
+              }
+              alert("Compra realizada con éxito, su vuelto es de "
+                + (response.data.fiveHundred * 500
+                  + response.data.oneHundred * 100
+                  + response.data.fifty * 50
+                  + response.data.twentyFive * 25)
+                + " colones" + "\n" + desglose
+              );
+              window.location.reload();
+            }
+            else {
+              alert("Fallo al realizar la compra, no hay suficiente vuelto en el sistema");
+            }
           }).catch(function (error) {
             if (error.response) {
               console.log(error.response)
