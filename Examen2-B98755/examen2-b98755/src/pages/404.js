@@ -7,7 +7,7 @@ const NotFound = () => (
   <>
     <Head>
       <title>
-        404 | Material Kit
+        404 | Examen 2 - B98755
       </title>
     </Head>
     <Box
@@ -32,15 +32,7 @@ const NotFound = () => (
             color="textPrimary"
             variant="h1"
           >
-            404: The page you are looking for isn’t here
-          </Typography>
-          <Typography
-            align="center"
-            color="textPrimary"
-            variant="subtitle2"
-          >
-            You either tried some shady route or you came here by mistake.
-            Whichever it is, try using the navigation
+            404: La página buscada no fue encontrada
           </Typography>
           <Box sx={{ textAlign: 'center' }}>
             <img
@@ -64,7 +56,7 @@ const NotFound = () => (
               sx={{ mt: 3 }}
               variant="contained"
             >
-              Go back to dashboard
+              Regresar a la página principal
             </Button>
           </NextLink>
         </Box>

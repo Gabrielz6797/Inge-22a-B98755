@@ -1,20 +1,15 @@
 import Head from 'next/head';
 import { Box, Container, Grid } from '@mui/material';
-import { Budget } from '../components/dashboard/budget';
-import { LatestOrders } from '../components/dashboard/latest-orders';
-import { LatestProducts } from '../components/dashboard/latest-products';
-import { Sales } from '../components/dashboard/sales';
-import { TasksProgress } from '../components/dashboard/tasks-progress';
-import { TotalCustomers } from '../components/dashboard/total-customers';
-import { TotalProfit } from '../components/dashboard/total-profit';
-import { TrafficByDevice } from '../components/dashboard/traffic-by-device';
-import { DashboardLayout } from '../components/dashboard-layout';
+import { products } from '../__mocks__/products';
+import { ProductListToolbar } from '../components/soda/soda-list-toolbar';
+import { ProductCard } from '../components/soda/soda-card';
+import { Layout } from '../components/layout';
 
-const Dashboard = () => (
+const VendingMachine = () => (
   <>
     <Head>
       <title>
-        Dashboard | Material Kit
+        Máquina de refrescos | Examen 2 - B98755
       </title>
     </Head>
     <Box
@@ -25,92 +20,42 @@ const Dashboard = () => (
       }}
     >
       <Container maxWidth={false}>
-        <Grid
-          container
-          spacing={3}
+        <ProductListToolbar />
+        <Box sx={{ pt: 3 }}>
+          <Grid
+            container
+            spacing={3}
+          >
+            {products.map((product) => (
+              <Grid
+                item
+                key={product.id}
+                lg={3}
+                md={6}
+                xs={12}
+              >
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            pt: 3
+          }}
         >
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <Budget />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalCustomers />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TasksProgress />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalProfit sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <LatestProducts sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
-        </Grid>
+        </Box>
       </Container>
     </Box>
   </>
 );
 
-Dashboard.getLayout = (page) => (
-  <DashboardLayout>
+VendingMachine.getLayout = (page) => (
+  <Layout>
     {page}
-  </DashboardLayout>
+  </Layout>
 );
 
-export default Dashboard;
+export default VendingMachine;
