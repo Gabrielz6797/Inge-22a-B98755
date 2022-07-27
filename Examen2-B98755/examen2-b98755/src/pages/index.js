@@ -106,8 +106,42 @@ class VendingMachine extends React.Component {
     } else if ((parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
       + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
       + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
-      + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500) {
-      return <TitleBar title={"Sistema fuera de servicio"} />;
+      + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500 ||
+      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
+        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
+        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
+        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 550 &&
+      this.state.sodas[0].quantity == 0 ||
+      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
+        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
+        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
+        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 600 &&
+      this.state.sodas[0].quantity == 0 && this.state.sodas[2].quantity == 0 ||
+      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
+        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
+        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
+        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 725 &&
+      this.state.sodas[0].quantity == 0 && this.state.sodas[1].quantity == 0 && this.state.sodas[2].quantity == 0) {
+      return (
+        <>
+          <Head>
+            <title>
+              Máquina de refrescos | Examen 2 - B98755
+            </title>
+          </Head>
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              py: 8
+            }}
+          >
+            <Container maxWidth={false}>
+              < TitleBar title={"Sistema fuera de servicio"} />
+            </Container>
+          </Box>
+        </>
+      );
     } else {
       return (
         <>
