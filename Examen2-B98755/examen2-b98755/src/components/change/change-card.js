@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Avatar, Box, Button, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 
-export const SodaCard = ({ soda, ...rest }) => {
+export const ChangeCard = ({ soda, ...rest }) => {
   const [buyQuantity, setBuyQuantity] = useState(0);
 
   function DecreaseQuantity() {
