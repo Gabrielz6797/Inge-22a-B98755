@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-export const ProductListToolbar = (props) => (
+export const SodaListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{

@@ -5,53 +5,73 @@ namespace examen2_B98755_backend.Handlers
   public class SodasHandler
   {
     // name, price, quantity, image URL
-    List<Tuple<string, int, int, string>> sodasData = new List<Tuple<string, int, int, string>>();
+    public static List<string> sodasNames;
+    public static List<int> sodasPrices;
+    public static List<int> sodasQuantities;
+    public static List<string> sodasImageURLs;
 
     public SodasHandler() { }
 
-    public void InitializeVariables()
+    public static void InitializeVariables()
     {
-      sodasData.Add(new Tuple<string, int, int, string>(
-        "Coca Cola",
-        10,
-        500,
-        ""
-      ));
+      sodasNames = new List<string>();
+      sodasPrices = new List<int>();
+      sodasQuantities = new List<int>();
+      sodasImageURLs = new List<string>();
 
-      sodasData.Add(new Tuple<string, int, int, string>(
-        "Pepsi",
-        8,
-        600,
-        ""
-      ));
+      sodasNames.Add("Coca Cola");
+      sodasNames.Add("Pepsi");
+      sodasNames.Add("Fanta");
+      sodasNames.Add("Sprite");
 
-      sodasData.Add(new Tuple<string, int, int, string>(
-        "Fanta",
-        10,
-        550,
-        ""
-      ));
+      sodasPrices.Add(500);
+      sodasPrices.Add(600);
+      sodasPrices.Add(550);
+      sodasPrices.Add(725);
 
-      sodasData.Add(new Tuple<string, int, int, string>(
-        "Sprite",
-        15,
-        725,
-        ""
-      ));
+      sodasQuantities.Add(10);
+      sodasQuantities.Add(8);
+      sodasQuantities.Add(10);
+      sodasQuantities.Add(15);
+
+      sodasImageURLs.Add("");
+      sodasImageURLs.Add("");
+      sodasImageURLs.Add("");
+      sodasImageURLs.Add("");
     }
 
-    public List<SodaModel> GetSodaData()
+    public static List<SodaModel> GetSodasData()
     {
       List<SodaModel> sodas = new List<SodaModel>();
 
-      foreach (Tuple<string, int, int, string> soda in sodasData)
+      for (int i = 0; i < sodasNames.Count; i++)
       {
         sodas.Add(new SodaModel
         {
-          name = soda.Item1,
-          price = soda.Item2.ToString(),
-          quantity = soda.Item3.ToString(),
-          imageURL = soda.Item4
+          name = sodasNames[i],
+          price = sodasPrices[i].ToString(),
+          quantity = sodasQuantities[i].ToString(),
+          imageURL = sodasImageURLs[i]
+        });
+      }
+
+      return sodas;
+    }
+
+    public static List<SodaModel> GetSodasData1()
+    {
+      List<SodaModel> sodas = new List<SodaModel>();
+
+      sodasQuantities[0] = sodasQuantities[0] + 1;
+
+      for (int i = 0; i < sodasNames.Count; i++)
+      {
+        sodas.Add(new SodaModel
+        {
+          name = sodasNames[i],
+          price = sodasPrices[i].ToString(),
+          quantity = sodasQuantities[i].ToString(),
+          imageURL = sodasImageURLs[i]
         });
       }
 
