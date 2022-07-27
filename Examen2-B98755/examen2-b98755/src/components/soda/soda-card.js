@@ -17,6 +17,10 @@ export const SodaCard = ({ soda, ...rest }) => {
     }
   };
 
+  function Buy() {
+    
+  };
+
   return (
     <Card
       sx={{
@@ -97,7 +101,7 @@ export const SodaCard = ({ soda, ...rest }) => {
               color="textPrimary"
               variant="body1"
             >
-              Comprar: {buyQuantity}
+              {buyQuantity}
             </Typography>
           </Grid>
           <Grid
@@ -112,6 +116,20 @@ export const SodaCard = ({ soda, ...rest }) => {
               onClick={IncreaseQuantity}
             >
               +
+            </Button>
+          </Grid>
+          <Grid
+            item
+            sx={{
+              alignItems: 'center',
+              display: 'flex'
+            }}
+          >
+            <Button
+              variant="outlined"
+              onClick={Buy}
+            >
+              Comprar
             </Button>
           </Grid>
         </Grid>
