@@ -19,7 +19,7 @@ namespace examen2_B98755_backend.Handlers
       sodasQuantities = new List<int>();
       sodasImageURLs = new List<string>();
 
-      sodasNames.Add("Coca Cola");
+      sodasNames.Add("Coca-Cola");
       sodasNames.Add("Pepsi");
       sodasNames.Add("Fanta");
       sodasNames.Add("Sprite");
@@ -34,10 +34,10 @@ namespace examen2_B98755_backend.Handlers
       sodasQuantities.Add(10);
       sodasQuantities.Add(15);
 
-      sodasImageURLs.Add("");
-      sodasImageURLs.Add("");
-      sodasImageURLs.Add("");
-      sodasImageURLs.Add("");
+      sodasImageURLs.Add("https://i.imgur.com/ybh8qda.png");
+      sodasImageURLs.Add("https://i.imgur.com/FhZXpoe.png");
+      sodasImageURLs.Add("https://i.imgur.com/mtFIeWj.png");
+      sodasImageURLs.Add("https://i.imgur.com/fxPtDBd.png");
     }
 
     public static List<SodaModel> GetSodasData()
@@ -62,7 +62,7 @@ namespace examen2_B98755_backend.Handlers
     {
       for (int i = 0; i < sodasQuantities.Count; i++)
       {
-        sodasQuantities[i] 
+        sodasQuantities[i] = sodasQuantities[i] - boughtSodas[i];
       }
     }
   }
