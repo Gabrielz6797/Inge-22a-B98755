@@ -11,18 +11,43 @@ class VendingMachine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sodas: [],
-      APIUrl: URL + 'getSodas',
+      sodas: []
     };
   }
 
   componentDidMount() {
-    axios.get(this.state.APIUrl).then(response => {
+    axios.get(URL + 'getSodas').then(response => {
       this.setState({ sodas: response.data });
+      sessionStorage.setItem("Coca-Cola", '0');
+      sessionStorage.setItem("Pepsi", '0');
+      sessionStorage.setItem("Fanta", '0');
+      sessionStorage.setItem("Sprite", '0');
     });
   }
 
   render() {
+    function Buy() {
+      var data = {
+        CocaCola: sessionStorage.getItem("Coca-Cola"),
+        Pepsi: sessionStorage.getItem("Pepsi"),
+        Fanta: sessionStorage.getItem("Fanta"),
+        Sprite: sessionStorage.getItem("Sprite")
+      };
+
+      axios.post(URL + 'updateSodas', data).then(response => {
+        alert("Compra realizada con éxito");
+        window.location.reload();
+      }).catch(function (error) {
+        if (error.response) {
+          console.log(error.response)
+          // The client was given an error response (5xx, 4xx)
+          alert("Error: No se pudo realizar la compra");
+        } else {
+          alert("Error: No se puede conectar al servidor");
+        }
+      });
+    };
+
     return (
       <>
         <Head>
@@ -65,6 +90,12 @@ class VendingMachine extends React.Component {
               }}
             >
             </Box>
+            <Button
+              variant="outlined"
+              onClick={Buy}
+            >
+              Comprar
+            </Button>
           </Container>
         </Box>
       </>

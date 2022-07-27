@@ -10,8 +10,6 @@ namespace examen2_B98755_backend.Handlers
     public static List<int> sodasQuantities;
     public static List<string> sodasImageURLs;
 
-    public SodasHandler() { }
-
     public static void InitializeVariables()
     {
       sodasNames = new List<string>();
@@ -56,14 +54,6 @@ namespace examen2_B98755_backend.Handlers
       }
 
       return sodas;
-    }
-
-    public static void UpdateSodasQuantity(List<int> boughtSodas)
-    {
-      for (int i = 0; i < sodasQuantities.Count; i++)
-      {
-        sodasQuantities[i] = sodasQuantities[i] - boughtSodas[i];
-      }
     }
   }
 }

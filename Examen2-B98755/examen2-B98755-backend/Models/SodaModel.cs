@@ -7,4 +7,12 @@
     public string quantity { get; set; }
     public string imageURL { get; set; }
   }
+
+  public class BoughtSodasModel
+  {
+    public string CocaCola { get; set; }
+    public string Pepsi { get; set; }
+    public string Fanta { get; set; }
+    public string Sprite { get; set; }
+  }
 }

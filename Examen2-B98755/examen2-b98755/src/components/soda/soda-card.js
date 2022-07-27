@@ -7,18 +7,16 @@ export const SodaCard = ({ soda, ...rest }) => {
 
   function DecreaseQuantity() {
     if (buyQuantity > 0) {
+      sessionStorage.setItem(soda.name, buyQuantity - 1);
       setBuyQuantity(buyQuantity - 1);
     }
   };
 
   function IncreaseQuantity() {
     if (buyQuantity < soda.quantity) {
+      sessionStorage.setItem(soda.name, buyQuantity + 1);
       setBuyQuantity(buyQuantity + 1);
     }
-  };
-
-  function Buy() {
-    
   };
 
   return (
@@ -116,20 +114,6 @@ export const SodaCard = ({ soda, ...rest }) => {
               onClick={IncreaseQuantity}
             >
               +
-            </Button>
-          </Grid>
-          <Grid
-            item
-            sx={{
-              alignItems: 'center',
-              display: 'flex'
-            }}
-          >
-            <Button
-              variant="outlined"
-              onClick={Buy}
-            >
-              Comprar
             </Button>
           </Grid>
         </Grid>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using examen2_B98755_backend.Models;
+using examen2_B98755_backend.BusinessLogic;
 using examen2_B98755_backend.Handlers;
+using examen2_B98755_backend.Models;
 
 namespace examen2_B98755_backend.Controllers
 {
@@ -26,11 +27,11 @@ namespace examen2_B98755_backend.Controllers
 
     [HttpPost]
     [Route("updateSodas")]
-    public ActionResult UpdateSodas(List<int> boughtSodas)
+    public ActionResult UpdateSodas(BoughtSodasModel boughtSodas)
     {
       try
       {
-        SodasHandler.UpdateSodasQuantity(boughtSodas);
+        SodasLogic.UpdateSodasQuantity(boughtSodas);
         return Ok();
       }
       catch (Exception error)
