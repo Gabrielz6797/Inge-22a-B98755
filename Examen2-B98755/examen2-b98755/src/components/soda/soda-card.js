@@ -10,12 +10,18 @@ export const SodaCard = ({ soda, ...rest }) => {
       sessionStorage.setItem(soda.name, buyQuantity - 1);
       setBuyQuantity(buyQuantity - 1);
     }
+    else {
+      alert("Error: Mínimo alcanzado");
+    }
   };
 
   function IncreaseQuantity() {
     if (buyQuantity < soda.quantity) {
       sessionStorage.setItem(soda.name, buyQuantity + 1);
       setBuyQuantity(buyQuantity + 1);
+    }
+    else {
+      alert("Error: Máximo alcanzado");
     }
   };
 
