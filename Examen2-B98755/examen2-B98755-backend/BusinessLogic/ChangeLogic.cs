@@ -5,26 +5,7 @@ namespace examen2_B98755_backend.BusinessLogic
 {
   public class ChangeLogic
   {
-    public static UsedCoins GetChange(int payment, BoughtSodasModel boughtSodas)
-    {
-      int boughtCocaColas = Int32.Parse(boughtSodas.cocaCola);
-      int boughtPepsis = Int32.Parse(boughtSodas.pepsi);
-      int boughtFantas = Int32.Parse(boughtSodas.fanta);
-      int boughtSprites = Int32.Parse(boughtSodas.sprite);
-
-      int totalCost = boughtCocaColas * SodasHandler.sodasPrices[0];
-      totalCost = totalCost + boughtPepsis * SodasHandler.sodasPrices[1];
-      totalCost = totalCost + boughtFantas * SodasHandler.sodasPrices[2];
-      totalCost = totalCost + boughtSprites * SodasHandler.sodasPrices[3];
-
-      int change = payment - totalCost;
-
-      UsedCoins usedCoins = CalculateUsedCoins(change);
-
-      return usedCoins;
-    }
-
-    private static UsedCoins CalculateUsedCoins(int change)
+    public static UsedCoins GetUsedCoins(int change)
     {
       int fiveHundredCoinsUsed = 0;
       int oneHundredCoinsUsed = 0;

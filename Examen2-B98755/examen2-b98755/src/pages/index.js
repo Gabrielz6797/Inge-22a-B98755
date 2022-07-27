@@ -35,10 +35,12 @@ class VendingMachine extends React.Component {
     sessionStorage.setItem("FantaTotal", '0');
     sessionStorage.setItem("SpriteTotal", '0');
 
+    sessionStorage.setItem("1000Quantity", '0');
     sessionStorage.setItem("500Quantity", '0');
     sessionStorage.setItem("100Quantity", '0');
     sessionStorage.setItem("50Quantity", '0');
     sessionStorage.setItem("25Quantity", '0');
+    sessionStorage.setItem("1000Total", '0');
     sessionStorage.setItem("500Total", '0');
     sessionStorage.setItem("100Total", '0');
     sessionStorage.setItem("50Total", '0');
@@ -54,18 +56,45 @@ class VendingMachine extends React.Component {
         sprite: sessionStorage.getItem("SpriteQuantity")
       };
 
-      if (data.CocaCola != '0' || data.Pepsi != '0' || data.Fanta != '0' || data.Sprite != '0') {
-        axios.post(URL + 'updateSodas', data).then(response => {
-          alert("Compra realizada con éxito");
-          window.location.reload();
-        }).catch(function (error) {
-          if (error.response) {
-            console.log(error.response)
-            alert("Error: No se pudo realizar la compra");
-          } else {
-            alert("Error: No se puede conectar al servidor");
-          }
-        });
+      if (data.cocaCola != '0' || data.pepsi != '0' || data.fanta != '0' || data.sprite != '0') {
+        let payment = parseInt(sessionStorage.getItem("1000Total"))
+          + parseInt(sessionStorage.getItem("500Total"))
+          + parseInt(sessionStorage.getItem("100Total"))
+          + parseInt(sessionStorage.getItem("50Total"))
+          + parseInt(sessionStorage.getItem("25Total"));
+
+        let totalCost = parseInt(sessionStorage.getItem("Coca-ColaTotal"))
+          + parseInt(sessionStorage.getItem("PepsiTotal"))
+          + parseInt(sessionStorage.getItem("FantaTotal"))
+          + parseInt(sessionStorage.getItem("SpriteTotal"));
+
+        if (payment >= totalCost) {
+          let change = payment - totalCost;
+          axios.post(URL + 'buySodasAndGetChange?change=' + change, data).then(response => {
+            alert("Compra realizada con éxito, su vuelto es de "
+              + (response.data.fiveHundred * 500
+                + response.data.oneHundred * 100
+                + response.data.fifty * 50
+                + response.data.twentyFive * 25)
+              + " colones" + "\n" + "Desglose:" + "\n" + "\t"
+              + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t "
+              + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t "
+              + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t "
+              + response.data.twentyFive + " moneda/s de " + 25
+            );
+            window.location.reload();
+          }).catch(function (error) {
+            if (error.response) {
+              console.log(error.response)
+              alert("Error: No se pudo realizar la compra");
+            } else {
+              alert("Error: No se puede conectar al servidor");
+            }
+          });
+        }
+        else {
+          alert("No ingresó suficiente dinero");
+        }
       }
       else {
         alert("No ha seleccioado ningún refresco");
@@ -74,7 +103,10 @@ class VendingMachine extends React.Component {
 
     if (!(this.state.isLoadedSodas && this.state.isLoadedCoins)) {
       return <div></div>;
-    } else if ((parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity) + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity) + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity) + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500) {
+    } else if ((parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
+      + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
+      + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
+      + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500) {
       return <TitleBar title={"Sistema fuera de servicio"} />;
     } else {
       return (
@@ -96,7 +128,6 @@ class VendingMachine extends React.Component {
               <SodasLayout sodas={this.state.sodas} />
               <TitleBar title={"Pago"} />
               <ChangeLayout coins={this.state.coins} />
-
               <Box
                 sx={{
                   display: 'flex',
