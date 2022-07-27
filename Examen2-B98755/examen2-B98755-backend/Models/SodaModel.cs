@@ -10,9 +10,9 @@
 
   public class BoughtSodasModel
   {
-    public string CocaCola { get; set; }
-    public string Pepsi { get; set; }
-    public string Fanta { get; set; }
-    public string Sprite { get; set; }
+    public string cocaCola { get; set; }
+    public string pepsi { get; set; }
+    public string fanta { get; set; }
+    public string sprite { get; set; }
   }
 }

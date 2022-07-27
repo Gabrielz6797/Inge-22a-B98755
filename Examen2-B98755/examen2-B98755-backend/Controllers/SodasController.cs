@@ -27,11 +27,11 @@ namespace examen2_B98755_backend.Controllers
 
     [HttpPost]
     [Route("updateSodas")]
-    public ActionResult UpdateSodas(BoughtSodasModel boughtSodas)
+    public ActionResult UpdateSodas(int payment, BoughtSodasModel boughtSodas)
     {
       try
       {
-        SodasLogic.UpdateSodasQuantity(boughtSodas);
+        SodasLogic.UpdateSodasQuantity(payment, boughtSodas);
         return Ok();
       }
       catch (Exception error)

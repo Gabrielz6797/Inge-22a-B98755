@@ -48,10 +48,10 @@ class VendingMachine extends React.Component {
   render() {
     function Buy() {
       var data = {
-        CocaCola: sessionStorage.getItem("Coca-ColaQuantity"),
-        Pepsi: sessionStorage.getItem("PepsiQuantity"),
-        Fanta: sessionStorage.getItem("FantaQuantity"),
-        Sprite: sessionStorage.getItem("SpriteQuantity")
+        cocaCola: sessionStorage.getItem("Coca-ColaQuantity"),
+        pepsi: sessionStorage.getItem("PepsiQuantity"),
+        fanta: sessionStorage.getItem("FantaQuantity"),
+        sprite: sessionStorage.getItem("SpriteQuantity")
       };
 
       if (data.CocaCola != '0' || data.Pepsi != '0' || data.Fanta != '0' || data.Sprite != '0') {

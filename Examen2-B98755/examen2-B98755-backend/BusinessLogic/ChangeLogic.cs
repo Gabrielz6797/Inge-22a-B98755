@@ -5,13 +5,86 @@ namespace examen2_B98755_backend.BusinessLogic
 {
   public class ChangeLogic
   {
-    public static void UpdateCoinsQuantity(BoughtSodasModel boughtSodas)
+    public static UsedCoins GetChange(int payment, BoughtSodasModel boughtSodas)
     {
-      //[1] = 500, [2] = 100, [3] = 50, [4] = 25
-      //SodasHandler.sodasQuantities[1] = SodasHandler.sodasQuantities[1] - usedCoins[1];
-      //SodasHandler.sodasQuantities[2] = SodasHandler.sodasQuantities[2] - usedCoins[2];
-      //SodasHandler.sodasQuantities[3] = SodasHandler.sodasQuantities[3] - usedCoins[3];
-      //SodasHandler.sodasQuantities[4] = SodasHandler.sodasQuantities[4] - usedCoins[4];
+      int boughtCocaColas = Int32.Parse(boughtSodas.cocaCola);
+      int boughtPepsis = Int32.Parse(boughtSodas.pepsi);
+      int boughtFantas = Int32.Parse(boughtSodas.fanta);
+      int boughtSprites = Int32.Parse(boughtSodas.sprite);
+
+      int totalCost = boughtCocaColas * SodasHandler.sodasPrices[0];
+      totalCost = totalCost + boughtPepsis * SodasHandler.sodasPrices[1];
+      totalCost = totalCost + boughtFantas * SodasHandler.sodasPrices[2];
+      totalCost = totalCost + boughtSprites * SodasHandler.sodasPrices[3];
+
+      int change = payment - totalCost;
+
+      UsedCoins usedCoins = CalculateUsedCoins(change);
+
+      return usedCoins;
+    }
+
+    private static UsedCoins CalculateUsedCoins(int change)
+    {
+      int fiveHundredCoinsUsed = 0;
+      int oneHundredCoinsUsed = 0;
+      int fiftyCoinsUsed = 0;
+      int twentyFiveCoinsUsed = 0;
+
+      // ChangeHandler List: [1] = 500, [2] = 100, [3] = 50, [4] = 25
+      while (change >= ChangeHandler.coinsValues[1] && ChangeHandler.coinsQuantities[1] > 0)
+      {
+        ChangeHandler.coinsQuantities[1] = ChangeHandler.coinsQuantities[1] - 1;
+        fiveHundredCoinsUsed = fiveHundredCoinsUsed + 1;
+        change = change - ChangeHandler.coinsValues[1];
+      }
+
+      while (change >= ChangeHandler.coinsValues[2] && ChangeHandler.coinsQuantities[2] > 0)
+      {
+        ChangeHandler.coinsQuantities[2] = ChangeHandler.coinsQuantities[2] - 1;
+        oneHundredCoinsUsed = oneHundredCoinsUsed + 1;
+        change = change - ChangeHandler.coinsValues[2];
+      }
+
+      while (change >= ChangeHandler.coinsValues[3] && ChangeHandler.coinsQuantities[3] > 0)
+      {
+        ChangeHandler.coinsQuantities[3] = ChangeHandler.coinsQuantities[3] - 1;
+        fiftyCoinsUsed = fiftyCoinsUsed + 1;
+        change = change - ChangeHandler.coinsValues[3];
+      }
+
+      while (change >= ChangeHandler.coinsValues[4] && ChangeHandler.coinsQuantities[4] > 0)
+      {
+        ChangeHandler.coinsQuantities[4] = ChangeHandler.coinsQuantities[4] - 1;
+        twentyFiveCoinsUsed = twentyFiveCoinsUsed + 1;
+        change = change - ChangeHandler.coinsValues[4];
+      }
+
+      UsedCoins usedCoins = new UsedCoins
+      {
+        fiveHundred = "0",
+        oneHundred = "0",
+        fifty = "0",
+        twentyFive = "0",
+      };
+
+      // if there are not enough coins to give change makes a rollback of variables
+      if (change > 0)
+      {
+        ChangeHandler.coinsQuantities[1] = ChangeHandler.coinsQuantities[1] + fiveHundredCoinsUsed;
+        ChangeHandler.coinsQuantities[2] = ChangeHandler.coinsQuantities[2] + oneHundredCoinsUsed;
+        ChangeHandler.coinsQuantities[3] = ChangeHandler.coinsQuantities[3] + fiftyCoinsUsed;
+        ChangeHandler.coinsQuantities[4] = ChangeHandler.coinsQuantities[4] + twentyFiveCoinsUsed;
+      }
+      else
+      {
+        usedCoins.fiveHundred = Convert.ToString(fiveHundredCoinsUsed);
+        usedCoins.oneHundred = Convert.ToString(oneHundredCoinsUsed);
+        usedCoins.fifty = Convert.ToString(fiftyCoinsUsed);
+        usedCoins.twentyFive = Convert.ToString(twentyFiveCoinsUsed);
+      }
+
+      return usedCoins;
     }
   }
 }
