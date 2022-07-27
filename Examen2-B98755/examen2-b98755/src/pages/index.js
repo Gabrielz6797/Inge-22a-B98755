@@ -74,6 +74,8 @@ class VendingMachine extends React.Component {
 
     if (!(this.state.isLoadedSodas && this.state.isLoadedCoins)) {
       return <div></div>;
+    } else if ((parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity) + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity) + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity) + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500) {
+      return <TitleBar title={"Sistema fuera de servicio"} />;
     } else {
       return (
         <>
