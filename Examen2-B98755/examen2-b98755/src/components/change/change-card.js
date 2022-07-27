@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Avatar, Box, Button, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 
-export const ChangeCard = ({ soda, ...rest }) => {
-  const [buyQuantity, setBuyQuantity] = useState(0);
+export const ChangeCard = ({ coin, ...rest }) => {
+  const [coinQuantity, setCoinQuantity] = useState(0);
 
   function DecreaseQuantity() {
-    if (buyQuantity > 0) {
-      sessionStorage.setItem(soda.name + "Quantity", buyQuantity - 1);
-      sessionStorage.setItem(soda.name + "Total", (buyQuantity - 1) * soda.price);
-      setBuyQuantity(buyQuantity - 1);
+    if (coinQuantity > 0) {
+      sessionStorage.setItem(coin.value + "Quantity", coinQuantity - 1);
+      sessionStorage.setItem(coin.value + "Total", (coinQuantity - 1) * coin.value);
+      setCoinQuantity(coinQuantity - 1);
     }
     else {
       alert("Error: Mínimo alcanzado");
@@ -17,14 +17,9 @@ export const ChangeCard = ({ soda, ...rest }) => {
   };
 
   function IncreaseQuantity() {
-    if (buyQuantity < soda.quantity) {
-      sessionStorage.setItem(soda.name + "Quantity", buyQuantity + 1);
-      sessionStorage.setItem(soda.name + "Total", (buyQuantity + 1) * soda.price);
-      setBuyQuantity(buyQuantity + 1);
-    }
-    else {
-      alert("Error: Máximo alcanzado");
-    }
+    sessionStorage.setItem(coin.value + "Quantity", coinQuantity + 1);
+    sessionStorage.setItem(coin.value + "Total", (coinQuantity + 1) * coin.value);
+    setCoinQuantity(coinQuantity + 1);
   };
 
   return (
@@ -37,40 +32,20 @@ export const ChangeCard = ({ soda, ...rest }) => {
       {...rest}
     >
       <CardContent>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pb: 3
-          }}
-        >
-          <Avatar
-            alt={soda.name}
-            src={soda.imageURL}
-            sx={{ width: 112, height: 112 }}
-          />
-        </Box>
         <Typography
           align="center"
           color="textPrimary"
           gutterBottom
           variant="h5"
         >
-          {soda.name}
+          {coin.value}
         </Typography>
         <Typography
           align="center"
           color="textPrimary"
           variant="body1"
         >
-          Precio: ₡{soda.price}
-        </Typography>
-        <Typography
-          align="center"
-          color="textPrimary"
-          variant="body1"
-        >
-          Disponibles: {soda.quantity}
+          En sistema: {coin.quantity}
         </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
@@ -107,14 +82,7 @@ export const ChangeCard = ({ soda, ...rest }) => {
               color="textPrimary"
               variant="body1"
             >
-              Cant. {buyQuantity} |&nbsp;
-            </Typography>
-            <Typography
-              align="center"
-              color="textPrimary"
-              variant="body1"
-            >
-              ₡{buyQuantity * soda.price}
+              ₡{coinQuantity * coin.value}
             </Typography>
           </Grid>
           <Grid
@@ -137,6 +105,6 @@ export const ChangeCard = ({ soda, ...rest }) => {
   );
 }
 
-SodaCard.propTypes = {
-  soda: PropTypes.object.isRequired
+ChangeCard.propTypes = {
+  coin: PropTypes.object.isRequired
 };
