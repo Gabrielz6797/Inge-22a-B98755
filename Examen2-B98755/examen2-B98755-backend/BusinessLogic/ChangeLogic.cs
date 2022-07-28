@@ -43,10 +43,10 @@ namespace examen2_B98755_backend.BusinessLogic
 
       UsedCoins usedCoins = new UsedCoins
       {
-        fiveHundred = "0",
-        oneHundred = "0",
-        fifty = "0",
-        twentyFive = "0",
+        fiveHundred = "-1",
+        oneHundred = "-1",
+        fifty = "-1",
+        twentyFive = "-1",
       };
 
       // if there are not enough coins to give change makes a rollback of variables

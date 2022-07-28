@@ -71,8 +71,8 @@ class VendingMachine extends React.Component {
         if (payment >= totalCost) {
           let change = payment - totalCost;
           axios.post(URL + 'buySodasAndGetChange?change=' + change, data).then(response => {
-            if (response.data.fiveHundred != 0 || response.data.oneHundred != 0
-              || response.data.fifty != 0 || response.data.twentyFive != 0) {
+            if (response.data.fiveHundred >= 0 && response.data.oneHundred >= 0
+              && response.data.fifty >= 0 && response.data.twentyFive >= 0) {
               let desglose = "Desglose:" + "\n";
               if (response.data.fiveHundred != 0) {
                 desglose = desglose + response.data.fiveHundred + " moneda/s de " + 500 + "\n";
@@ -118,8 +118,8 @@ class VendingMachine extends React.Component {
 
     if (!(this.state.isLoadedSodas && this.state.isLoadedCoins)) {
       return <div></div>;
-    } else if (parseInt(this.state.coins[1].quantity == 0) && parseInt(this.state.coins[2].quantity == 0) &&
-      parseInt(this.state.coins[3].quantity == 0) && parseInt(this.state.coins[4].quantity == 0)) {
+    } else if (this.state.coins[1].quantity == '0' && this.state.coins[2].quantity == '0' &&
+      this.state.coins[3].quantity == '0' && this.state.coins[4].quantity == '0') {
       return (
         <>
           <Head>
@@ -168,10 +168,11 @@ class VendingMachine extends React.Component {
                 }}
               >
                 <Button
-                  variant="outlined"
+                  variant="contained"
+                  size="large"
                   onClick={Buy}
                 >
-                  Comprar
+                  Comprar refrescos seleccionados
                 </Button>
               </Box>
             </Container>
