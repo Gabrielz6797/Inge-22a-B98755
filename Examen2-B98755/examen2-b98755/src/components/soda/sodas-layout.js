@@ -1,8 +1,11 @@
-import { Box, Grid } from '@mui/material';
+import { useState } from 'react';
+import { Box, Grid, TextField } from '@mui/material';
 import { SodaCard } from './soda-card';
-import { CalculateTotal } from '../change/calculate-total';
+import { TitleBar } from '../../components/title-bar';
 
 export const SodasLayout = ({ sodas, ...rest }) => {
+  const [total, setTotal] = useState(0);
+
   return (
     <>
       <Box sx={{ pt: 3 }}>
@@ -18,7 +21,7 @@ export const SodasLayout = ({ sodas, ...rest }) => {
               md={6}
               xs={12}
             >
-              <SodaCard soda={soda} />
+              <SodaCard soda={soda} setTotal={setTotal} />
             </Grid>
           ))}
         </Grid>
@@ -30,7 +33,7 @@ export const SodasLayout = ({ sodas, ...rest }) => {
           pt: 3
         }}
       >
-        <CalculateTotal />
+        <TitleBar title={"Total: ₡" + total} />
       </Box>
       <br></br>
     </>

@@ -2,13 +2,17 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Avatar, Box, Button, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
 
-export const SodaCard = ({ soda, ...rest }) => {
+export const SodaCard = ({ soda, setTotal, ...rest }) => {
   const [buyQuantity, setBuyQuantity] = useState(0);
 
   function DecreaseQuantity() {
     if (buyQuantity > 0) {
       sessionStorage.setItem(soda.name + "Quantity", buyQuantity - 1);
       sessionStorage.setItem(soda.name + "Total", (buyQuantity - 1) * soda.price);
+      setTotal(parseInt(sessionStorage.getItem("Coca-ColaTotal"))
+        + parseInt(sessionStorage.getItem("PepsiTotal"))
+        + parseInt(sessionStorage.getItem("FantaTotal"))
+        + parseInt(sessionStorage.getItem("SpriteTotal")));
       setBuyQuantity(buyQuantity - 1);
     }
     else {
@@ -20,12 +24,21 @@ export const SodaCard = ({ soda, ...rest }) => {
     if (buyQuantity < soda.quantity) {
       sessionStorage.setItem(soda.name + "Quantity", buyQuantity + 1);
       sessionStorage.setItem(soda.name + "Total", (buyQuantity + 1) * soda.price);
+      setTotal(parseInt(sessionStorage.getItem("Coca-ColaTotal"))
+        + parseInt(sessionStorage.getItem("PepsiTotal"))
+        + parseInt(sessionStorage.getItem("FantaTotal"))
+        + parseInt(sessionStorage.getItem("SpriteTotal")));
       setBuyQuantity(buyQuantity + 1);
     }
     else {
       alert("Error: Máximo alcanzado");
     }
   };
+
+  let numberFormatter = new Intl.NumberFormat("es-CR", {
+    style: 'currency',
+    currency: 'CRC',
+  });
 
   return (
     <Card
