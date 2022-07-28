@@ -38,7 +38,7 @@ export const ChangeCard = ({ coin, ...rest }) => {
           gutterBottom
           variant="h5"
         >
-          {coin.value}
+          ₡{coin.value}
         </Typography>
         <Typography
           align="center"

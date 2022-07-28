@@ -13,7 +13,7 @@ export const ChangeLayout = ({ coins, ...rest }) => {
             <Grid
               item
               key={coin.value}
-              lg={3}
+              lg={2.4}
               md={6}
               xs={12}
             >
