@@ -73,15 +73,15 @@ class VendingMachine extends React.Component {
           axios.post(URL + 'buySodasAndGetChange?change=' + change, data).then(response => {
             if (response.data.fiveHundred != 0 || response.data.oneHundred != 0
               || response.data.fifty != 0 || response.data.twentyFive != 0) {
-              let desglose = "Desglose:" + "\n" + "\t ";
+              let desglose = "Desglose:" + "\n";
               if (response.data.fiveHundred != 0) {
-                desglose = desglose + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t ";
+                desglose = desglose + response.data.fiveHundred + " moneda/s de " + 500 + "\n";
               }
               if (response.data.oneHundred != 0) {
-                desglose = desglose + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t ";
+                desglose = desglose + response.data.oneHundred + " moneda/s de " + 100 + "\n";
               }
               if (response.data.fifty != 0) {
-                desglose = desglose + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t ";
+                desglose = desglose + response.data.fifty + " moneda/s de " + 50 + "\n";
               }
               if (response.data.twentyFive != 0) {
                 desglose = desglose + response.data.twentyFive + " moneda/s de " + 25;
