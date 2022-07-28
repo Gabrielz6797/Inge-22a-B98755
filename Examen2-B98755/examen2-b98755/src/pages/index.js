@@ -71,18 +71,33 @@ class VendingMachine extends React.Component {
         if (payment >= totalCost) {
           let change = payment - totalCost;
           axios.post(URL + 'buySodasAndGetChange?change=' + change, data).then(response => {
-            alert("Compra realizada con éxito, su vuelto es de "
-              + (response.data.fiveHundred * 500
-                + response.data.oneHundred * 100
-                + response.data.fifty * 50
-                + response.data.twentyFive * 25)
-              + " colones" + "\n" + "Desglose:" + "\n" + "\t"
-              + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t "
-              + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t "
-              + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t "
-              + response.data.twentyFive + " moneda/s de " + 25
-            );
-            window.location.reload();
+            if (response.data.fiveHundred != 0 || response.data.oneHundred != 0
+              || response.data.fifty != 0 || response.data.twentyFive != 0) {
+              let desglose = "Desglose:" + "\n" + "\t ";
+              if (response.data.fiveHundred != 0) {
+                desglose = desglose + response.data.fiveHundred + " moneda/s de " + 500 + "\n" + "\t ";
+              }
+              if (response.data.oneHundred != 0) {
+                desglose = desglose + response.data.oneHundred + " moneda/s de " + 100 + "\n" + "\t ";
+              }
+              if (response.data.fifty != 0) {
+                desglose = desglose + response.data.fifty + " moneda/s de " + 50 + "\n" + "\t ";
+              }
+              if (response.data.twentyFive != 0) {
+                desglose = desglose + response.data.twentyFive + " moneda/s de " + 25;
+              }
+              alert("Compra realizada con éxito, su vuelto es de "
+                + (response.data.fiveHundred * 500
+                  + response.data.oneHundred * 100
+                  + response.data.fifty * 50
+                  + response.data.twentyFive * 25)
+                + " colones" + "\n" + desglose
+              );
+              window.location.reload();
+            }
+            else {
+              alert("Fallo al realizar la compra, no hay suficiente vuelto en el sistema");
+            }
           }).catch(function (error) {
             if (error.response) {
               console.log(error.response)
@@ -103,25 +118,8 @@ class VendingMachine extends React.Component {
 
     if (!(this.state.isLoadedSodas && this.state.isLoadedCoins)) {
       return <div></div>;
-    } else if ((parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
-      + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
-      + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
-      + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 500 ||
-      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
-        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
-        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
-        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 550 &&
-      this.state.sodas[0].quantity == 0 ||
-      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
-        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
-        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
-        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 600 &&
-      this.state.sodas[0].quantity == 0 && this.state.sodas[2].quantity == 0 ||
-      (parseInt(this.state.coins[1].value) * parseInt(this.state.coins[1].quantity)
-        + parseInt(this.state.coins[2].value) * parseInt(this.state.coins[2].quantity)
-        + parseInt(this.state.coins[3].value) * parseInt(this.state.coins[3].quantity)
-        + parseInt(this.state.coins[4].value) * parseInt(this.state.coins[4].quantity)) < 725 &&
-      this.state.sodas[0].quantity == 0 && this.state.sodas[1].quantity == 0 && this.state.sodas[2].quantity == 0) {
+    } else if (parseInt(this.state.coins[1].quantity == 0) && parseInt(this.state.coins[2].quantity == 0) &&
+      parseInt(this.state.coins[3].quantity == 0) && parseInt(this.state.coins[4].quantity == 0)) {
       return (
         <>
           <Head>
